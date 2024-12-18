@@ -28,7 +28,7 @@ namespace AppJudgmentDay
         
         private void LoadUserList()
         {
-            string filePath = "C:/Users/studkab8/Desktop/AppJudgmentDay/AppJudgmentDay/DataBaseUsers.txt";
+            string filePath = "DataBaseUsers.txt";
             if (File.Exists(filePath))
             {
                 var users = File.ReadAllLines(filePath);

@@ -115,11 +115,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="DataBaseUsers.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="DataBaseBooks.txt" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
