@@ -134,7 +134,7 @@ namespace AppJudgmentDay
         {
             if (firstname_result.Text == ver && lastname_result.Text == ver && dad_result.Text == ver && year_result.Text == ver && phoneNum_result.Text == ver && email_result.Text == ver)
             {
-                using (StreamWriter stream = new StreamWriter("C:/Users/studkab8/Desktop/AppJudgmentDay/AppJudgmentDay/DataBaseUsers.txt", true))
+                using (StreamWriter stream = new StreamWriter("DataBaseUsers.txt", true))
                 {
                     string line = $"{firstName}#{lastName}#{dad}#{year}#{phoneNumber}#{email}";
                     stream.WriteLine(line);
