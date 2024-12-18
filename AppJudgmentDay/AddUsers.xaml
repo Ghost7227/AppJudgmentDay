@@ -1,0 +1,52 @@
+﻿<Window x:Class="AppJudgmentDay.AddUsers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppJudgmentDay"
+        mc:Ignorable="d"
+        Title="Создание читательского билета" MaxHeight="200" Width="450">
+    <Grid>
+        <StackPanel>
+            <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" Grid.Row="0">Введите имя:</TextBlock>
+        <TextBlock TextWrapping="Wrap" Grid.Row="1">Введите фамилию:</TextBlock>
+        <TextBlock TextWrapping="Wrap" Grid.Row="2">Введите отчество(при наличии):</TextBlock>
+        <TextBlock TextWrapping="Wrap" Grid.Row="3">Введите возраст:</TextBlock>
+        <TextBlock TextWrapping="Wrap" Grid.Row="4">Введите номер телефона:</TextBlock>
+        <TextBlock TextWrapping="Wrap" Grid.Row="5">Введите адрес электронной почты:</TextBlock>
+
+                <TextBox Grid.Row="0" Grid.Column="1" Name="firstnameTextBox" LostFocus="firstnameTextBox_LostFocus"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="lastnameTextBox" LostFocus="lastnameTextBox_LostFocus"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="dadTextBox" LostFocus="dadTextBox_LostFocus"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="1" Name="yearTextBox" LostFocus="yearTextBox_LostFocus"></TextBox>
+                <TextBox Grid.Row="4" Grid.Column="1" Name="phonenumberTextBox" LostFocus="phonenumberTextBox_LostFocus"></TextBox>
+                <TextBox Grid.Row="5" Grid.Column="1" Name="emailTextBox" LostFocus="emailTextBox_LostFocus"></TextBox>
+
+                <TextBlock Grid.Column="2" Name="firstname_result"></TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="1" Name="lastname_result"></TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="2" Name="dad_result"></TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="3" Name="year_result"></TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="4" Name="phoneNum_result"></TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="5" Name="email_result"></TextBlock>
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Ввести данные" Margin="0,0,10,0" Click="addData"/>
+                <Button Content="Отменить и вернуться назад" Click="cancel"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
