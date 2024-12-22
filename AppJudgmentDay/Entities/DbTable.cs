@@ -98,7 +98,19 @@ namespace AppJudgmentDay.Entities
         /// </summary>
         public IEnumerable<T> GetAll() 
         { 
-            return Data.GetEnumerator(); 
+            return Data;
+        }
+
+        /// <summary>
+        /// Modifies the given entity in the RAM. This function does not save the result. WARNING: Uses .Equals() function for search
+        /// </summary>
+        public void Modify(T oldEntity, T updatedEntity)
+        {
+            var temp = Data.FindIndex(x => x.Equals(oldEntity));
+            // Nothing found
+            if (temp == -1)
+                return;
+            Data[temp] = updatedEntity;
         }
     }
 }

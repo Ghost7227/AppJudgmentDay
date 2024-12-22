@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppJudgmentDay.Entities;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,8 +31,9 @@ namespace AppJudgmentDay
         {
             // ДЕМО
 
-            //var temp = DB.Readers.GetAll();
-            //DB.Readers.Append(new Entities.Reader()
+            //var temp = DB.Readers.GetAll().ToArray();
+
+            //DB.Readers.Append(new Reader()
             //{
             //    FirstName = "FN",
             //    MiddleName = "MN",
@@ -40,7 +42,16 @@ namespace AppJudgmentDay
             //    Email = "mail@mail.ru",
             //    Age = "69"
             //});
-            //temp = DB.Readers.GetAll();
+
+            //DB.Readers.Modify(temp[0], new Reader()
+            //{
+            //    FirstName = "FN1",
+            //    MiddleName = "MN1",
+            //    LastName = "LN1",
+            //    PhoneNumber = "7-922-222-22-20",
+            //    Email = "mail@mail.ru",
+            //    Age = "420"
+            //});
             //DB.Readers.SaveAll();
 
             string filePath = "DataBaseUsers.txt";
