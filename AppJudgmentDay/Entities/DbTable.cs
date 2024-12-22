@@ -96,7 +96,7 @@ namespace AppJudgmentDay.Entities
         /// <summary>
         /// Returns all known entities
         /// </summary>
-        public IEnumerator<T> GetAll() 
+        public IEnumerable<T> GetAll() 
         { 
             return Data.GetEnumerator(); 
         }
