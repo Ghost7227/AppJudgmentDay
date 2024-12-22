@@ -112,5 +112,14 @@ namespace AppJudgmentDay.Entities
                 return;
             Data[temp] = updatedEntity;
         }
+
+        /// <summary>
+        /// Deletes the data from the set. Rewrites the save file
+        /// </summary>
+        public void Delete(T entity)
+        {
+            if(Data.Remove(entity))
+                SaveAll();
+        }
     }
 }
