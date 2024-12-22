@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DB.cs" />
     <Compile Include="Entities\Book.cs" />
+    <Compile Include="Entities\DbTable.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Entities\Reader.cs" />
     <Compile Include="SewBooks.xaml.cs">

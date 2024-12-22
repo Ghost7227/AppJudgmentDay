@@ -28,6 +28,21 @@ namespace AppJudgmentDay
         
         private void LoadUserList()
         {
+            // ДЕМО
+
+            //var temp = DB.Readers.GetAll();
+            //DB.Readers.Append(new Entities.Reader()
+            //{
+            //    FirstName = "FN",
+            //    MiddleName = "MN",
+            //    LastName = "LN",
+            //    PhoneNumber = "7-922-222-22-20",
+            //    Email = "mail@mail.ru",
+            //    Age = "69"
+            //});
+            //temp = DB.Readers.GetAll();
+            //DB.Readers.SaveAll();
+
             string filePath = "DataBaseUsers.txt";
             if (File.Exists(filePath))
             {

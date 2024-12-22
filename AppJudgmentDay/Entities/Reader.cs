@@ -1,4 +1,5 @@
 ﻿using AppJudgmentDay.Interfaces;
+using System.Windows.Data;
 
 namespace AppJudgmentDay.Entities
 {
@@ -16,7 +17,7 @@ namespace AppJudgmentDay.Entities
 
         public string MiddleName;
 
-        public string Year;
+        public string Age;
 
         public string PhoneNumber;
 
@@ -34,14 +35,21 @@ namespace AppJudgmentDay.Entities
 
         public bool InitializeFromString(string inp)
         {
-            // Здесь сделай парсер из строки по своему формату
-            return false;
+            var parts = inp.Split('#');
+            if (parts.Length < 6 ) 
+                return false;
+            FirstName = parts[0];
+            LastName = parts[1];
+            MiddleName = parts[2];
+            Age = parts[3];
+            PhoneNumber = parts[4];
+            Email = parts[5];
+            return true;
         }
 
         public string Serialize()
         {
-            // Здесь сделай сериализацию в строку по своему формату
-            return "";
+            return $"{FirstName}#{LastName}#{MiddleName}#{Age}#{PhoneNumber}#{Email}";
         }
     }
 }
