@@ -56,10 +56,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DB.cs" />
+    <Compile Include="DeleteUser.xaml.cs">
+      <DependentUpon>DeleteUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\DbTable.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Entities\Reader.cs" />
+    <Compile Include="Modifity.xaml.cs">
+      <DependentUpon>Modifity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SewBooks.xaml.cs">
       <DependentUpon>SewBooks.xaml</DependentUpon>
     </Compile>
@@ -67,6 +73,10 @@
       <DependentUpon>Userlist.xaml</DependentUpon>
     </Compile>
     <Page Include="AddUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -85,6 +95,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Modifity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SewBooks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

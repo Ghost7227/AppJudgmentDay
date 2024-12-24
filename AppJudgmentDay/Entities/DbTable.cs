@@ -32,6 +32,7 @@ namespace AppJudgmentDay.Entities
 
         /// <summary>
         /// Reads the file and writes the contents to the table
+        /// Считывает файл и записывает его содержимое в таблицу
         /// </summary>
         public void LoadFromFile()
         {
@@ -53,6 +54,7 @@ namespace AppJudgmentDay.Entities
 
         /// <summary>
         /// Overrides the file with the existing data
+        /// Заменяет файл существующими данными
         /// </summary>
         public void SaveAll()
         {
@@ -80,6 +82,7 @@ namespace AppJudgmentDay.Entities
 
         /// <summary>
         /// Adds an entity to a table
+        /// Добавляет объект в таблицу
         /// </summary>
         /// <param name="entity"></param>
         public void Append(T entity)
@@ -95,6 +98,7 @@ namespace AppJudgmentDay.Entities
 
         /// <summary>
         /// Returns all known entities
+        /// Возвращает все известные объекты
         /// </summary>
         public IEnumerable<T> GetAll() 
         { 
@@ -103,6 +107,7 @@ namespace AppJudgmentDay.Entities
 
         /// <summary>
         /// Modifies the given entity in the RAM. This function does not save the result. WARNING: Uses .Equals() function for search
+        /// Изменяет заданный объект в оперативной памяти. Эта функция не сохраняет результат. ВНИМАНИЕ: для поиска используется функция .Equals()
         /// </summary>
         public void Modify(T oldEntity, T updatedEntity)
         {
@@ -115,11 +120,17 @@ namespace AppJudgmentDay.Entities
 
         /// <summary>
         /// Deletes the data from the set. Rewrites the save file
+        /// Удаляет данные из набора. Перезаписывает сохраненный файл
         /// </summary>
         public void Delete(T entity)
         {
             if(Data.Remove(entity))
                 SaveAll();
+        }
+
+        public static implicit operator DbTable<T>(Reader v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using AppJudgmentDay.Entities;
-using AppJudgmentDay.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -15,40 +14,36 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace AppJudgmentDay
 {
     /// <summary>
-    /// Логика взаимодействия для AddUsers.xaml
+    /// Логика взаимодействия для Modifity.xaml
     /// </summary>
-    public partial class AddUsers : Window
+    public partial class Modifity : Window
     {
-        public AddUsers()
+        public Modifity()
         {
             InitializeComponent();
         }
-        //Поля для записи в файл
+        //переменные и поля
         #region
-        public string countValue;
-        private int countUser;
-        public string countPath = "Count.txt";
         public string ver = "Верно";
         public string nev = "Неверно";
         public string pattern = @"^[А-ЯЁ][а-яё]*$";
-        
-        private string ID;
+        private int lineCount = 0;
         private string firstName;
         private string lastName;
         private string dad;
         private string year;
         private string phoneNumber;
         private string email;
-        private int lineCount;
-        private string lineCountStr;
-        private int id;
+        public int t;
+        public int mod;
         #endregion
-        #region
         //проверка корректности ввода
+        #region
         private void firstnameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             firstName = firstnameTextBox.Text;
@@ -80,7 +75,7 @@ namespace AppJudgmentDay
         private void dadTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             dad = dadTextBox.Text;
-            if (Regex.IsMatch(dad, pattern)| dad == "")
+            if (Regex.IsMatch(dad, pattern) | dad == "")
             {
                 dad_result.Text = ver;
                 dad_result.Foreground = System.Windows.Media.Brushes.Green;
@@ -108,12 +103,11 @@ namespace AppJudgmentDay
                 }
             }
         }
-
         private void phonenumberTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             phoneNumber = phonenumberTextBox.Text;
-            string pattern_num = @"^(7|8)-\d{3}-\d{3}-\d{2}-\d{2}$"; 
-            if (Regex.IsMatch (phoneNumber, pattern_num))
+            string pattern_num = @"^(7|8)-\d{3}-\d{3}-\d{2}-\d{2}$";
+            if (Regex.IsMatch(phoneNumber, pattern_num))
             {
                 phoneNum_result.Text = ver;
                 phoneNum_result.Foreground = System.Windows.Media.Brushes.Green;
@@ -124,7 +118,6 @@ namespace AppJudgmentDay
                 phoneNum_result.Foreground = System.Windows.Media.Brushes.Red;
             }
         }
-
         private void emailTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             email = emailTextBox.Text;
@@ -140,11 +133,13 @@ namespace AppJudgmentDay
                 email_result.Foreground = System.Windows.Media.Brushes.Red;
             }
         }
-        #endregion
+#endregion
         //конец проверки корректности ввода
 
-        private void addData(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //Счетчик строк для проверки коректности номера строки
+            #region
             string filePath = "DataBaseUsers.txt";
             try
             {
@@ -160,63 +155,42 @@ namespace AppJudgmentDay
             {
                 MessageBox.Show($"Произошла ошибка");
             }
-            lineCountStr = lineCount.ToString();
-            //Загрузка счетчика пользователй, присвоение ID на основе количества пользователей
-            LoadCount();
-            countUser++;
-            ID = countUser.ToString();
-            //Вызов метода из DB для записи данных в файл
-            #region
-            if (firstname_result.Text == ver && lastname_result.Text == ver && dad_result.Text == ver && year_result.Text == ver && phoneNum_result.Text == ver && email_result.Text == ver)
-            {
-
-                var temp = DB.Readers.GetAll().ToArray();
-                DB.Readers.Append(new Reader()
-                {
-                    FirstName = firstName,
-                    MiddleName = dad,
-                    LastName = lastName,
-                    PhoneNumber = phoneNumber,
-                    Email = email,
-                    Age = year,
-                    Id = ID
-                }); ;
-
-                MessageBox.Show("Данные внесены");
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Исправьте ошибки");
-            }
             #endregion
-            SaveCount();
-        }
-        //отмена
-        private void cancel(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите вернуться назад?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
+            t = Convert.ToInt32(id.Text);//получение ID, данные которого нужно изменить
+            mod = t - 1;
+            if (t <= lineCount)
             {
-               this.Close();
+                firstnameTextBox.IsEnabled = true;
+                lastnameTextBox.IsEnabled = true;
+                dadTextBox.IsEnabled = true;
+                yearTextBox.IsEnabled = true;
+                phonenumberTextBox.IsEnabled = true;
+                emailTextBox.IsEnabled = true;
+                btnBlock.IsEnabled = true;
+                btnCheck.IsEnabled = false;
+                id.IsEnabled = false;
             }
+            else { MessageBox.Show("Переделай"); }
+            
         }
-        //Сохранение счетчика в файл
-        private void SaveCount()
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            File.WriteAllText(countPath, countUser.ToString());
-        }
-        //Получение счетчика из файла
-        private void LoadCount()
-        {
-            if (File.Exists(countPath))
+            var temp = DB.Readers.GetAll().ToArray();
+
+            DB.Readers.Modify(temp[mod], new Reader()
             {
-                countValue = File.ReadAllText(countPath);
-                if(int.TryParse(countValue, out int result))
-                {
-                    countUser = result;
-                }
-            }
+                FirstName = firstName,
+                MiddleName = dad,
+                LastName = lastName,
+                PhoneNumber = phoneNumber,
+                Email = email,
+                Age = year,
+                Id = id.Text
+            });
+            DB.Readers.SaveAll();
+            MessageBox.Show("Данные внесены.");
+            this.Close();
         }
-           }
+    }
 }

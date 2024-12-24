@@ -12,6 +12,8 @@
             <Button Click="Button_Click" Content="Добавить пользователя" Width="150"/>
             <Button Click="Button_Click_1" Content="Посмотреть читателей" Width="150"/>
             <Button Click="Button_Click_2" Content="Посмотреть список имеющихся книг" Width="250"/>
+            <Button Click="Button_Click_3" Content="Изменить пользователя" Width="150"/>
+            <Button Click="Button_Click_4" Content="Удалить пользователя" Width="150"/>
         </StackPanel>
     </Grid>
 </Window>

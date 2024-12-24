@@ -11,6 +11,8 @@ namespace AppJudgmentDay.Entities
         // Если смущает убери
         #region Fields
 
+        public string Id;
+
         public string FirstName;
 
         public string LastName;
@@ -22,7 +24,6 @@ namespace AppJudgmentDay.Entities
         public string PhoneNumber;
 
         public string Email;
-
         #endregion
 
         public Reader(string orig)
@@ -36,20 +37,21 @@ namespace AppJudgmentDay.Entities
         public bool InitializeFromString(string inp)
         {
             var parts = inp.Split('#');
-            if (parts.Length < 6 ) 
+            if (parts.Length < 7 ) 
                 return false;
             FirstName = parts[0];
-            LastName = parts[1];
-            MiddleName = parts[2];
+            MiddleName = parts[1];
+            LastName = parts[2];
             Age = parts[3];
             PhoneNumber = parts[4];
             Email = parts[5];
+            Id = parts[6];
             return true;
         }
 
         public string Serialize()
         {
-            return $"{FirstName}#{LastName}#{MiddleName}#{Age}#{PhoneNumber}#{Email}";
+            return $"{Id}#{FirstName}#{LastName}#{MiddleName}#{Age}#{PhoneNumber}#{Email}";
         }
     }
 }

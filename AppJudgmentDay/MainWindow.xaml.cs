@@ -51,5 +51,17 @@ namespace AppJudgmentDay
             SewBooks sewBooks = new SewBooks();
             sewBooks.Show();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Modifity modifity = new Modifity();
+            modifity.ShowDialog();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            DeleteUser deleteUser = new DeleteUser();
+            deleteUser.ShowDialog();
+        }
     }
 }

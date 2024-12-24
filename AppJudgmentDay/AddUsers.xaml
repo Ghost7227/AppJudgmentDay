@@ -23,22 +23,22 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock TextWrapping="Wrap" Grid.Row="0">Введите имя:</TextBlock>
-        <TextBlock TextWrapping="Wrap" Grid.Row="1">Введите фамилию:</TextBlock>
-        <TextBlock TextWrapping="Wrap" Grid.Row="2">Введите отчество(при наличии):</TextBlock>
+        <TextBlock TextWrapping="Wrap" Grid.Row="2">Введите фамилию:</TextBlock>
+        <TextBlock TextWrapping="Wrap" Grid.Row="1">Введите отчество(при наличии):</TextBlock>
         <TextBlock TextWrapping="Wrap" Grid.Row="3">Введите возраст:</TextBlock>
         <TextBlock TextWrapping="Wrap" Grid.Row="4">Введите номер телефона:</TextBlock>
         <TextBlock TextWrapping="Wrap" Grid.Row="5">Введите адрес электронной почты:</TextBlock>
 
                 <TextBox Grid.Row="0" Grid.Column="1" Name="firstnameTextBox" LostFocus="firstnameTextBox_LostFocus"></TextBox>
-                <TextBox Grid.Row="1" Grid.Column="1" Name="lastnameTextBox" LostFocus="lastnameTextBox_LostFocus"></TextBox>
-                <TextBox Grid.Row="2" Grid.Column="1" Name="dadTextBox" LostFocus="dadTextBox_LostFocus"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="lastnameTextBox" LostFocus="lastnameTextBox_LostFocus"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="dadTextBox" LostFocus="dadTextBox_LostFocus"></TextBox>
                 <TextBox Grid.Row="3" Grid.Column="1" Name="yearTextBox" LostFocus="yearTextBox_LostFocus"></TextBox>
                 <TextBox Grid.Row="4" Grid.Column="1" Name="phonenumberTextBox" LostFocus="phonenumberTextBox_LostFocus"></TextBox>
                 <TextBox Grid.Row="5" Grid.Column="1" Name="emailTextBox" LostFocus="emailTextBox_LostFocus"></TextBox>
 
                 <TextBlock Grid.Column="2" Name="firstname_result"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="1" Name="lastname_result"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="2" Name="dad_result"></TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="2" Name="lastname_result"></TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="1" Name="dad_result"></TextBlock>
                 <TextBlock Grid.Column="2" Grid.Row="3" Name="year_result"></TextBlock>
                 <TextBlock Grid.Column="2" Grid.Row="4" Name="phoneNum_result"></TextBlock>
                 <TextBlock Grid.Column="2" Grid.Row="5" Name="email_result"></TextBlock>
