@@ -105,5 +105,11 @@ namespace AppJudgmentDay
             ModifityWorker modifityWorker = new ModifityWorker();
             modifityWorker.Show();
         }
+
+        private void Button_Click_12(object sender, RoutedEventArgs e)
+        {
+            IssueBook issueBook = new IssueBook();
+            issueBook.ShowDialog();
+        }
     }
 }

@@ -12,6 +12,8 @@ namespace AppJudgmentDay.Entities
         public string Produser;
         public string Isbn;
         public string Idbook;
+        public string Holder;
+        public string Work;
         #endregion
 
         public Book() { }
@@ -32,12 +34,14 @@ namespace AppJudgmentDay.Entities
             Title = parts[3];
             Janre = parts[4];
             Produser = parts[5];
+            Holder = parts[6];
+            Work = parts[7];
             return true;
         }
 
         public string Serialize()
         {
-            return $"{Idbook}#{Isbn}#{Author}#{Title}#{Janre}#{Produser}";
+            return $"{Idbook}#{Isbn}#{Author}#{Title}#{Janre}#{Produser}#{Holder}#{Work}";
         }
     }
 }

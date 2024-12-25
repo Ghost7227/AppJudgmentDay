@@ -77,6 +77,9 @@
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Entities\Reader.cs" />
     <Compile Include="Interfaces\Issue_Receive.cs" />
+    <Compile Include="IssueBook.xaml.cs">
+      <DependentUpon>IssueBook.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modifity.xaml.cs">
       <DependentUpon>Modifity.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DeleteWorker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IssueBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

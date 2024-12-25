@@ -48,5 +48,21 @@ namespace AppJudgmentDay
                 MessageBox.Show("Что-то пошло не так");
             }
         }
+
+        private void SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (UserListBox.SelectedItem != null)
+            {
+                string selectedItem = UserListBox.SelectedItem.ToString();
+                using (var writer = new StreamWriter("BufReaders.txt"))
+                {
+                    writer.Write(selectedItem);
+                    writer.Close();
+                }
+                IssueBook issueBook = new IssueBook();
+                issueBook.ShowDialog();
+                
+            }
+        }
     }
 }

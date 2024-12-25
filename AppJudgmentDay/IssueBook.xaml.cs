@@ -16,16 +16,19 @@ using System.Windows.Shapes;
 namespace AppJudgmentDay
 {
     /// <summary>
-    /// Логика взаимодействия для SewBooks.xaml
+    /// Логика взаимодействия для IssueBook.xaml
     /// </summary>
-    public partial class SewBooks : Window
+    public partial class IssueBook : Window
     {
-        public SewBooks()
+        public string content;
+        public string book;
+        public IssueBook()
         {
             InitializeComponent();
             LoadUserList();
+            Loadreader();
+            reader.Text = content;
         }
-
         private void LoadUserList()
         {
             string filePath = "DataBaseBooks.txt";
@@ -45,6 +48,27 @@ namespace AppJudgmentDay
             else
             {
                 MessageBox.Show("Что-то пошло не так");
+            }
+        }
+
+        private void Loadreader()
+        {
+            using (var read = new StreamReader("BufReaders.txt"))
+            {
+                content = read.ReadLine();
+                read.Close();
+            }
+            using (FileStream fs = new FileStream("BufReaders.txt", FileMode.Truncate));
+        }
+
+        private void booksListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (booksListBox.SelectedItem != null)
+            {
+                string selectedItem = booksListBox.SelectedItem.ToString();
+                
+                ChooseBooks.Items.Add(selectedItem);
+
             }
         }
     }

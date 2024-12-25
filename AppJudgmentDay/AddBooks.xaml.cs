@@ -156,7 +156,9 @@ namespace AppJudgmentDay
                     Author = author,
                     Title = nameBook,
                     Janre = bookStyle,
-                    Produser = produser
+                    Produser = produser,
+                    Holder = "Библиотека",
+                    Work = " "
             });
 
                 MessageBox.Show("Данные внесены");

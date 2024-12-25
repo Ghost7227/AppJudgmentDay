@@ -26,6 +26,9 @@
                 <Button Click="Button_Click_11" Content="Изменить работника" Width="150"/>
                 <Button Click="Button_Click_10" Content="Удалить работника" Width="150"/>
             </StackPanel>
+            <StackPanel>
+                <Button Content="Выдать книги" Click="Button_Click_12"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
