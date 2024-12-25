@@ -1,5 +1,4 @@
 ﻿using AppJudgmentDay.Entities;
-using AppJudgmentDay.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,11 +18,11 @@ using System.Windows.Shapes;
 namespace AppJudgmentDay
 {
     /// <summary>
-    /// Логика взаимодействия для AddUsers.xaml
+    /// Логика взаимодействия для AddWorker.xaml
     /// </summary>
-    public partial class AddUsers : Window
+    public partial class AddWorker : Window
     {
-        public AddUsers()
+        public AddWorker()
         {
             InitializeComponent();
         }
@@ -31,11 +30,12 @@ namespace AppJudgmentDay
         #region
         public string countValue;
         private int countUser;
-        public string countPath = "Count.txt";
+        public string countPath = "WorkerCount.txt";
         public string ver = "Верно";
         public string nev = "Неверно";
         public string pattern = @"^[А-ЯЁ][а-яё]*$";
-        
+
+        private string post;
         private string ID;
         private string firstName;
         private string lastName;
@@ -80,7 +80,7 @@ namespace AppJudgmentDay
         private void dadTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             dad = dadTextBox.Text;
-            if (Regex.IsMatch(dad, pattern)| dad == "")
+            if (Regex.IsMatch(dad, pattern) | dad == "")
             {
                 dad_result.Text = ver;
                 dad_result.Foreground = System.Windows.Media.Brushes.Green;
@@ -112,8 +112,8 @@ namespace AppJudgmentDay
         private void phonenumberTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             phoneNumber = phonenumberTextBox.Text;
-            string pattern_num = @"^(7|8)-\d{3}-\d{3}-\d{2}-\d{2}$"; 
-            if (Regex.IsMatch (phoneNumber, pattern_num))
+            string pattern_num = @"^(7|8)-\d{3}-\d{3}-\d{2}-\d{2}$";
+            if (Regex.IsMatch(phoneNumber, pattern_num))
             {
                 phoneNum_result.Text = ver;
                 phoneNum_result.Foreground = System.Windows.Media.Brushes.Green;
@@ -140,12 +140,27 @@ namespace AppJudgmentDay
                 email_result.Foreground = System.Windows.Media.Brushes.Red;
             }
         }
+
+        private void postTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            post = postTextBox.Text;
+            if (Regex.IsMatch(post, pattern))
+            {
+                post_result.Text = ver;
+                post_result.Foreground = System.Windows.Media.Brushes.Green;
+            }
+            else
+            {
+                post_result.Text = nev;
+                post_result.Foreground = System.Windows.Media.Brushes.Red;
+            }
+        }
         #endregion
         //конец проверки корректности ввода
 
         private void addData(object sender, RoutedEventArgs e)
         {
-            string filePath = "DataBaseUsers.txt";
+            string filePath = "DataBaseWorkers.txt";
             try
             {
                 using (StreamReader reader = new StreamReader(filePath))
@@ -167,11 +182,11 @@ namespace AppJudgmentDay
             ID = countUser.ToString();
             //Вызов метода из DB для записи данных в файл
             #region
-            if (firstname_result.Text == ver && lastname_result.Text == ver && dad_result.Text == ver && year_result.Text == ver && phoneNum_result.Text == ver && email_result.Text == ver)
+            if (firstname_result.Text == ver && lastname_result.Text == ver && dad_result.Text == ver && year_result.Text == ver && phoneNum_result.Text == ver && email_result.Text == ver && post_result.Text == ver)
             {
 
-                var temp = DB.Readers.GetAll().ToArray();
-                DB.Readers.Append(new Reader()
+                var temp = DB.Workers.GetAll().ToArray();
+                DB.Workers.Append(new Worker()
                 {
                     FirstName = firstName,
                     MiddleName = dad,
@@ -179,8 +194,9 @@ namespace AppJudgmentDay
                     PhoneNumber = phoneNumber,
                     Email = email,
                     Age = year,
-                    Id = ID
-                }); 
+                    Id = ID,
+                    Post = post
+                });
 
                 MessageBox.Show("Данные внесены");
                 this.Close();
@@ -198,7 +214,7 @@ namespace AppJudgmentDay
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите вернуться назад?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-               this.Close();
+                this.Close();
             }
         }
         //Сохранение счетчика в файл
@@ -212,7 +228,7 @@ namespace AppJudgmentDay
             if (File.Exists(countPath))
             {
                 countValue = File.ReadAllText(countPath);
-                if(int.TryParse(countValue, out int result))
+                if (int.TryParse(countValue, out int result))
                 {
                     countUser = result;
                 }

@@ -16,5 +16,7 @@ namespace AppJudgmentDay
         /// A table that contains all the known readers
         /// </summary>
         public static DbTable<Reader> Readers = new DbTable<Reader>("DataBaseUsers.txt");
+        public static DbTable<Book> Books = new DbTable<Book>("DataBaseBooks.txt");
+        public static DbTable<Worker> Workers = new DbTable<Worker>("DataBaseWorkers.txt");
     }
 }

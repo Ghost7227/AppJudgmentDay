@@ -1,5 +1,4 @@
-﻿using AppJudgmentDay.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,15 +16,14 @@ using System.Windows.Shapes;
 namespace AppJudgmentDay
 {
     /// <summary>
-    /// Логика взаимодействия для DeleteUser.xaml
+    /// Логика взаимодействия для DeleteWorker.xaml
     /// </summary>
-    public partial class DeleteUser : Window
+    public partial class DeleteWorker : Window
     {
-        public DeleteUser()
+        public DeleteWorker()
         {
             InitializeComponent();
         }
-        
         public string tt;
         public int mod;
         public int lineCount;
@@ -36,7 +34,7 @@ namespace AppJudgmentDay
         {
             //Счетчик строк для проверки коректности номера строки
             #region
-            string filePath = "DataBaseUsers.txt";
+            string filePath = "DataBaseWorkers.txt";
             try
             {
                 using (StreamReader reader = new StreamReader(filePath))
@@ -84,8 +82,8 @@ namespace AppJudgmentDay
 
         private void btnbloc_Click(object sender, RoutedEventArgs e)
         {
-            var temp = DB.Readers.GetAll().ToArray();
-            DB.Readers.Delete(temp[resultInt]);
+            var temp = DB.Workers.GetAll().ToArray();
+            DB.Workers.Delete(temp[resultInt]);
             MessageBox.Show("Данные удалены.");
             this.Close();
         }

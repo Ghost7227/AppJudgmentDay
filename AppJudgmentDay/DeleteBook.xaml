@@ -1,18 +1,16 @@
-﻿<Window x:Class="AppJudgmentDay.DeleteUser"
+﻿<Window x:Class="AppJudgmentDay.DeleteBook"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppJudgmentDay"
         mc:Ignorable="d"
-        Title="DeleteUser" Height="450" Width="800">
+        Title="DeleteBook" Height="450" Width="800">
     <Grid>
         <StackPanel>
-        <TextBlock Text="Введите строку, данные которой хотите удалить"/>
-        <TextBox Name="id"></TextBox>
-        <Button Content="Проверить ID" Click="Button_Click" Name="btnCheck"/>
-            <TextBlock>Данные пользователя:</TextBlock>
-            <TextBlock Name="user"></TextBlock>
+            <TextBlock Text="Введите строку, данные которой хотите удалить"/>
+            <TextBox Name="id"></TextBox>
+            <Button Content="Проверить ID" Click="Button_Click" Name="btnCheck"/>
             <Button Content="Удалить" Click="btnbloc_Click" IsEnabled="False" Name="btnbloc"></Button>
         </StackPanel>
     </Grid>

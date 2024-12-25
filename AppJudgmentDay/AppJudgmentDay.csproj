@@ -55,28 +55,64 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddBooks.xaml.cs">
+      <DependentUpon>AddBooks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddWorker.xaml.cs">
+      <DependentUpon>AddWorker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DB.cs" />
+    <Compile Include="DeleteBook.xaml.cs">
+      <DependentUpon>DeleteBook.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DeleteUser.xaml.cs">
       <DependentUpon>DeleteUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeleteWorker.xaml.cs">
+      <DependentUpon>DeleteWorker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\DbTable.cs" />
+    <Compile Include="Entities\Worker.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Entities\Reader.cs" />
+    <Compile Include="Interfaces\Issue_Receive.cs" />
     <Compile Include="Modifity.xaml.cs">
       <DependentUpon>Modifity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModifityWorker.xaml.cs">
+      <DependentUpon>ModifityWorker.xaml</DependentUpon>
     </Compile>
     <Compile Include="SewBooks.xaml.cs">
       <DependentUpon>SewBooks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SewWorkers.xaml.cs">
+      <DependentUpon>SewWorkers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Userlist.xaml.cs">
       <DependentUpon>Userlist.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddBooks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="AddUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddWorker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DeleteUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteWorker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -99,7 +135,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ModifityWorker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SewBooks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SewWorkers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

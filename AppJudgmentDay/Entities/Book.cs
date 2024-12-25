@@ -1,14 +1,17 @@
 ﻿using AppJudgmentDay.Interfaces;
+using System.Windows.Controls;
 
 namespace AppJudgmentDay.Entities
 {
     public class Book : IEntity
     {
-        // Если смущает убери
         #region Fields
-
-        // TODO: Добавить поля книги
-
+        public string Author;
+        public string Title;
+        public string Janre;
+        public string Produser;
+        public string Isbn;
+        public string Idbook;
         #endregion
 
         public Book() { }
@@ -20,14 +23,21 @@ namespace AppJudgmentDay.Entities
 
         public bool InitializeFromString(string inp)
         {
-            // Здесь сделай парсер из строки по своему формату
-            return false;
+            var parts = inp.Split('#');
+            if (parts.Length < 7)
+                return false;
+            Idbook = parts[0];
+            Isbn = parts[1];
+            Author = parts[2];
+            Title = parts[3];
+            Janre = parts[4];
+            Produser = parts[5];
+            return true;
         }
 
         public string Serialize()
         {
-            // Здесь сделай сериализацию в строку по своему формату
-            return "";
+            return $"{Idbook}#{Isbn}#{Author}#{Title}#{Janre}#{Produser}";
         }
     }
 }

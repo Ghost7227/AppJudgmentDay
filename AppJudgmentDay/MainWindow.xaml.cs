@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppJudgmentDay.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,6 +63,47 @@ namespace AppJudgmentDay
         {
             DeleteUser deleteUser = new DeleteUser();
             deleteUser.ShowDialog();
+        }
+        //добавление книги
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            AddBooks addBook = new AddBooks();
+            addBook.ShowDialog();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            DeleteBook deleteBook = new DeleteBook();
+            deleteBook.ShowDialog();
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+
+        }
+        //работники
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            AddWorker addWorker = new AddWorker();
+            addWorker.ShowDialog();
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            SewWorkers sewWorkers = new SewWorkers();
+            sewWorkers.Show();
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+            DeleteWorker deleteWorker = new DeleteWorker();
+            deleteWorker.ShowDialog();
+        }
+
+        private void Button_Click_11(object sender, RoutedEventArgs e)
+        {
+            ModifityWorker modifityWorker = new ModifityWorker();
+            modifityWorker.Show();
         }
     }
 }

@@ -41,6 +41,9 @@ namespace AppJudgmentDay
         private string email;
         public int t;
         public int mod;
+        public string tt;
+        public string result;
+        public int resultInt;
         #endregion
         //проверка корректности ввода
         #region
@@ -156,9 +159,25 @@ namespace AppJudgmentDay
                 MessageBox.Show($"Произошла ошибка");
             }
             #endregion
-            t = Convert.ToInt32(id.Text);//получение ID, данные которого нужно изменить
-            mod = t - 1;
-            if (t <= lineCount)
+            //получение строки, данные которой нужно изменить
+            string[] lines = File.ReadAllLines(filePath);
+            tt = id.Text;
+            if (int.TryParse(tt, out int lineNumber))
+            {
+                if(lineNumber > 0 && lineNumber <= lines.Length)
+                {
+                    string line = lines[lineNumber - 1];
+                    int index = line.IndexOf('#');
+                    if (index != -1)
+                    {
+                        result = line.Substring(0, index);//По сути, получение указаного ID
+                        resultInt = Convert.ToInt32(tt) - 1;//Получение номера строки для перезаписи строки
+                        mod = resultInt + 1;
+                    }
+                }
+            }
+
+            if (mod <= lineCount)
             {
                 firstnameTextBox.IsEnabled = true;
                 lastnameTextBox.IsEnabled = true;
@@ -171,14 +190,14 @@ namespace AppJudgmentDay
                 id.IsEnabled = false;
             }
             else { MessageBox.Show("Переделай"); }
-            
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var temp = DB.Readers.GetAll().ToArray();
 
-            DB.Readers.Modify(temp[mod], new Reader()
+            DB.Readers.Modify(temp[resultInt], new Reader()
             {
                 FirstName = firstName,
                 MiddleName = dad,
@@ -186,7 +205,7 @@ namespace AppJudgmentDay
                 PhoneNumber = phoneNumber,
                 Email = email,
                 Age = year,
-                Id = id.Text
+                Id = result
             });
             DB.Readers.SaveAll();
             MessageBox.Show("Данные внесены.");

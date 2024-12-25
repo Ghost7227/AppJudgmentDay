@@ -8,12 +8,24 @@
         Title="MainWindow" Height="450" Width="800"
         Closing="Window_Closing">
     <Grid>
-        <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
             <Button Click="Button_Click" Content="Добавить пользователя" Width="150"/>
             <Button Click="Button_Click_1" Content="Посмотреть читателей" Width="150"/>
-            <Button Click="Button_Click_2" Content="Посмотреть список имеющихся книг" Width="250"/>
             <Button Click="Button_Click_3" Content="Изменить пользователя" Width="150"/>
             <Button Click="Button_Click_4" Content="Удалить пользователя" Width="150"/>
+        </StackPanel>
+        <StackPanel>
+                <Button Click="Button_Click_5" Content="Добавить книгу" Width="150"/>
+                <Button Click="Button_Click_2" Content="Посмотреть список имеющихся книг" Width="250"/>
+                <Button Click="Button_Click_6" Content="Удалить книгу" Width="150"/>
+            </StackPanel>
+            <StackPanel>
+                <Button Click="Button_Click_8" Content="Добавить работника" Width="150"/>
+                <Button Click="Button_Click_9" Content="Посмотреть список работников" Width="250"/>
+                <Button Click="Button_Click_11" Content="Изменить работника" Width="150"/>
+                <Button Click="Button_Click_10" Content="Удалить работника" Width="150"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

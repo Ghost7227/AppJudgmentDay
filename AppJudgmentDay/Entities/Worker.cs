@@ -1,14 +1,16 @@
 ﻿using AppJudgmentDay.Interfaces;
-using System.Windows.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace AppJudgmentDay.Entities
 {
-    /// <summary>
-    /// The person that uses the library
-    /// </summary>
-    public class Reader : IEntity
+
+    public class Worker : IEntity
     {
-        // Если смущает убери
         #region Fields
 
         public string Id;
@@ -24,20 +26,21 @@ namespace AppJudgmentDay.Entities
         public string PhoneNumber;
 
         public string Email;
+
+        public string Post;
         #endregion
 
-        public Reader(string orig)
-        {
+        public Worker(string orig) 
+        { 
             InitializeFromString(orig);
         }
 
-        // For us to be able to invoke the constructor
-        public Reader() { } 
+        public Worker() { }
 
         public bool InitializeFromString(string inp)
         {
             var parts = inp.Split('#');
-            if (parts.Length < 7 ) 
+            if (parts.Length < 8)
                 return false;
             Id = parts[0];
             FirstName = parts[1];
@@ -46,12 +49,14 @@ namespace AppJudgmentDay.Entities
             Age = parts[4];
             PhoneNumber = parts[5];
             Email = parts[6];
+            Post = parts[7];
             return true;
         }
 
         public string Serialize()
         {
-            return $"{Id}#{FirstName}#{MiddleName}#{LastName}#{Age}#{PhoneNumber}#{Email}";
+            return $"{Id}#{FirstName}#{MiddleName}#{LastName}#{Age}#{PhoneNumber}#{Email}#{Post}";
         }
     }
+    
 }

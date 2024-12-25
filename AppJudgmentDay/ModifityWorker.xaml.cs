@@ -1,5 +1,4 @@
 ﻿using AppJudgmentDay.Entities;
-using AppJudgmentDay.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,36 +18,35 @@ using System.Windows.Shapes;
 namespace AppJudgmentDay
 {
     /// <summary>
-    /// Логика взаимодействия для AddUsers.xaml
+    /// Логика взаимодействия для ModifityWorker.xaml
     /// </summary>
-    public partial class AddUsers : Window
+    public partial class ModifityWorker : Window
     {
-        public AddUsers()
+        public ModifityWorker()
         {
             InitializeComponent();
         }
-        //Поля для записи в файл
+        //переменные и поля
         #region
-        public string countValue;
-        private int countUser;
-        public string countPath = "Count.txt";
         public string ver = "Верно";
         public string nev = "Неверно";
         public string pattern = @"^[А-ЯЁ][а-яё]*$";
-        
-        private string ID;
+        private int lineCount = 0;
         private string firstName;
         private string lastName;
         private string dad;
         private string year;
         private string phoneNumber;
         private string email;
-        private int lineCount;
-        private string lineCountStr;
-        private int id;
+        public int t;
+        public int mod;
+        public string tt;
+        public string result;
+        public int resultInt;
+        public string post;
         #endregion
-        #region
         //проверка корректности ввода
+        #region
         private void firstnameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             firstName = firstnameTextBox.Text;
@@ -80,7 +78,7 @@ namespace AppJudgmentDay
         private void dadTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             dad = dadTextBox.Text;
-            if (Regex.IsMatch(dad, pattern)| dad == "")
+            if (Regex.IsMatch(dad, pattern) | dad == "")
             {
                 dad_result.Text = ver;
                 dad_result.Foreground = System.Windows.Media.Brushes.Green;
@@ -108,12 +106,11 @@ namespace AppJudgmentDay
                 }
             }
         }
-
         private void phonenumberTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             phoneNumber = phonenumberTextBox.Text;
-            string pattern_num = @"^(7|8)-\d{3}-\d{3}-\d{2}-\d{2}$"; 
-            if (Regex.IsMatch (phoneNumber, pattern_num))
+            string pattern_num = @"^(7|8)-\d{3}-\d{3}-\d{2}-\d{2}$";
+            if (Regex.IsMatch(phoneNumber, pattern_num))
             {
                 phoneNum_result.Text = ver;
                 phoneNum_result.Foreground = System.Windows.Media.Brushes.Green;
@@ -124,7 +121,6 @@ namespace AppJudgmentDay
                 phoneNum_result.Foreground = System.Windows.Media.Brushes.Red;
             }
         }
-
         private void emailTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             email = emailTextBox.Text;
@@ -140,12 +136,27 @@ namespace AppJudgmentDay
                 email_result.Foreground = System.Windows.Media.Brushes.Red;
             }
         }
+        private void postTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            post = postTextBox.Text;
+            if (Regex.IsMatch(post, pattern))
+            {
+                post_result.Text = ver;
+                post_result.Foreground = System.Windows.Media.Brushes.Green;
+            }
+            else
+            {
+                post_result.Text = nev;
+                post_result.Foreground = System.Windows.Media.Brushes.Red;
+            }
+        }
         #endregion
         //конец проверки корректности ввода
-
-        private void addData(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string filePath = "DataBaseUsers.txt";
+            //Счетчик строк для проверки коректности номера строки
+            #region
+            string filePath = "DataBaseWorkers.txt";
             try
             {
                 using (StreamReader reader = new StreamReader(filePath))
@@ -160,63 +171,60 @@ namespace AppJudgmentDay
             {
                 MessageBox.Show($"Произошла ошибка");
             }
-            lineCountStr = lineCount.ToString();
-            //Загрузка счетчика пользователй, присвоение ID на основе количества пользователей
-            LoadCount();
-            countUser++;
-            ID = countUser.ToString();
-            //Вызов метода из DB для записи данных в файл
-            #region
-            if (firstname_result.Text == ver && lastname_result.Text == ver && dad_result.Text == ver && year_result.Text == ver && phoneNum_result.Text == ver && email_result.Text == ver)
-            {
-
-                var temp = DB.Readers.GetAll().ToArray();
-                DB.Readers.Append(new Reader()
-                {
-                    FirstName = firstName,
-                    MiddleName = dad,
-                    LastName = lastName,
-                    PhoneNumber = phoneNumber,
-                    Email = email,
-                    Age = year,
-                    Id = ID
-                }); 
-
-                MessageBox.Show("Данные внесены");
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Исправьте ошибки");
-            }
             #endregion
-            SaveCount();
-        }
-        //отмена
-        private void cancel(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите вернуться назад?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
+            //получение строки, данные которой нужно изменить
+            string[] lines = File.ReadAllLines(filePath);
+            tt = id.Text;
+            if (int.TryParse(tt, out int lineNumber))
             {
-               this.Close();
-            }
-        }
-        //Сохранение счетчика в файл
-        private void SaveCount()
-        {
-            File.WriteAllText(countPath, countUser.ToString());
-        }
-        //Получение счетчика из файла
-        private void LoadCount()
-        {
-            if (File.Exists(countPath))
-            {
-                countValue = File.ReadAllText(countPath);
-                if(int.TryParse(countValue, out int result))
+                if (lineNumber > 0 && lineNumber <= lines.Length)
                 {
-                    countUser = result;
+                    string line = lines[lineNumber - 1];
+                    int index = line.IndexOf('#');
+                    if (index != -1)
+                    {
+                        result = line.Substring(0, index);//По сути, получение указаного ID
+                        resultInt = Convert.ToInt32(tt) - 1;//Получение номера строки для перезаписи строки
+                        mod = resultInt + 1;
+                    }
                 }
             }
+
+            if (mod <= lineCount)
+            {
+                firstnameTextBox.IsEnabled = true;
+                lastnameTextBox.IsEnabled = true;
+                dadTextBox.IsEnabled = true;
+                yearTextBox.IsEnabled = true;
+                phonenumberTextBox.IsEnabled = true;
+                emailTextBox.IsEnabled = true;
+                btnBlock.IsEnabled = true;
+                btnCheck.IsEnabled = false;
+                id.IsEnabled = false;
+                postTextBox.IsEnabled = true;
+            }
+            else { MessageBox.Show("Переделай"); }
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var temp = DB.Workers.GetAll().ToArray();
+
+            DB.Workers.Modify(temp[resultInt], new Worker()
+            {
+                FirstName = firstName,
+                MiddleName = dad,
+                LastName = lastName,
+                PhoneNumber = phoneNumber,
+                Email = email,
+                Age = year,
+                Id = result,
+                Post = post
+            });
+            DB.Workers.SaveAll();
+            MessageBox.Show("Данные внесены.");
+            this.Close();
         }
     }
 }

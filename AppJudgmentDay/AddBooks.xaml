@@ -27,22 +27,19 @@
                 <TextBlock TextWrapping="Wrap" Grid.Row="1">Введите название:</TextBlock>
                 <TextBlock TextWrapping="Wrap" Grid.Row="2">Введите жанры:</TextBlock>
                 <TextBlock TextWrapping="Wrap" Grid.Row="3">Введите издательство:</TextBlock>
-                <TextBlock TextWrapping="Wrap" Grid.Row="4">Введите ФИО сотрудника, выдавшего книгу:</TextBlock>
-                <TextBlock TextWrapping="Wrap" Grid.Row="5">Введите ФИО читателя, взявшего книгу:</TextBlock>
-
+                <TextBlock TextWrapping="Wrap" Grid.Row="4">Введите ISBN:</TextBlock>
+ 
                 <TextBox Grid.Row="0" Grid.Column="1" Name="authorTextBox" LostFocus="authorTextBox_LostFocus"></TextBox>
                 <TextBox Grid.Row="1" Grid.Column="1" Name="nameTextBox" LostFocus="nameTextBox_LostFocus"></TextBox>
                 <TextBox Grid.Row="2" Grid.Column="1" Name="styleTextBox" LostFocus="styleTextBox_LostFocus"></TextBox>
                 <TextBox Grid.Row="3" Grid.Column="1" Name="produserTextBox" LostFocus="produserTextBox_LostFocus"></TextBox>
-                <TextBox Grid.Row="4" Grid.Column="1" Name="workerTextBox" LostFocus="workerTextBox_LostFocus"></TextBox>
-                <TextBox Grid.Row="5" Grid.Column="1" Name="readerTextBox" LostFocus="readerTextBox_LostFocus"></TextBox>
+                <TextBox Grid.Row="4" Grid.Column="1" Name="isbnTextBox" LostFocus="isbnTextBox_LostFocus"></TextBox>
 
                 <TextBlock Grid.Column="2" Name="author_result"></TextBlock>
                 <TextBlock Grid.Column="2" Grid.Row="1" Name="name_result"></TextBlock>
                 <TextBlock Grid.Column="2" Grid.Row="2" Name="style_result"></TextBlock>
                 <TextBlock Grid.Column="2" Grid.Row="3" Name="produser_result"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="4" Name="worker_result"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="5" Name="reader_result"></TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="4" Name="isbn_result"></TextBlock>
             </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="Ввести данные" Margin="0,0,10,0" Click="addData"/>
