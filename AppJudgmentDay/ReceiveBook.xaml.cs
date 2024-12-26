@@ -30,7 +30,7 @@ namespace AppJudgmentDay
             Loadreader();
             reader.Text = reader1;
         }
-        
+        //Вывод сотрудников в список
         private void LoadItemListView()
         {
             if (File.Exists(WorkPath))
@@ -75,6 +75,7 @@ namespace AppJudgmentDay
                 Searchbooks();
             }
         }
+        //Получение данных о читателе из буферного файла
         private void Loadreader()
         {
             using (var read = new StreamReader("BufReaders.txt"))
@@ -84,6 +85,7 @@ namespace AppJudgmentDay
             }
             using (FileStream fs = new FileStream("BufReaders.txt", FileMode.Truncate)) ;
         }
+        //Поиск книг, в записях о держателе которых содержится полученный читатель
         List<int> indexs = new List<int>();
         private void Searchbooks()
         {
@@ -95,6 +97,7 @@ namespace AppJudgmentDay
                     if (lines[i].Contains(reader1))
                     {
                         indexs.Add(i);
+                        MessageBox.Show(i.ToString());
                     }
                 }
             }
@@ -102,6 +105,7 @@ namespace AppJudgmentDay
             {
                 MessageBox.Show("Fatality!", ex.Message);
             }
+            LoadBooks();
         }
 
         private void LoadBooks()
@@ -109,11 +113,20 @@ namespace AppJudgmentDay
             try
             {
                 string[] lines = File.ReadAllLines(BookPath);
-
+                booksList.Items.Clear();
+                var uniqueindex = indexs.Distinct().OrderBy(i => i);
+                foreach (int index in uniqueindex)
+                {
+                    if (index >= 0 && index < lines.Length)
+                    {
+                        string line = lines[index];
+                        booksList.Items.Add(line);
+                    } 
+                }
             }
             catch
             {
-
+                MessageBox.Show("Ошибка чтения или вывода книг");
             }
         }
 

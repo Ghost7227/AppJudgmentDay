@@ -17,11 +17,23 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-                <TextBlock Text="Книги читателя"/>
-            <ListBox Name="booksListBox" SelectionChanged="booksListBox_SelectionChanged" IsEnabled="False"/>
+            <TextBlock Text="Книги читателя"/>
+            <ListView Name="booksList" SelectionChanged="booksListBox_SelectionChanged" IsEnabled="False">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Выберите книги, которые хотите сдать:" DisplayMemberBinding="{Binding}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
             <TextBlock Text="Выбранные книги"/>
-            <ListBox Name="ChooseBooks"/>
-            <Button Content="Сдать" Click="Button_Click"/>
+            <ListView Name="ChooseBooks">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Книги, которые будут сданы:" DisplayMemberBinding="{Binding}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Content="Сдать" Click="Button_Click" IsEnabled="False"/>
             </StackPanel>
     </Grid>
 </Window>

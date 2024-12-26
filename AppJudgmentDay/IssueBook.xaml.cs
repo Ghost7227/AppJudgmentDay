@@ -115,14 +115,6 @@ namespace AppJudgmentDay
             bookStyle = bookdata[4];
             produser = bookdata[5];
             lastHolder = bookdata[6];
-            /*//Делаем запись в журнал выдачи
-            using (StreamWriter cw = new StreamWriter("JurnalIssue.txt"))
-            {
-                foreach (string line in chooseBook)
-                {
-                    cw.WriteLine(line);
-                }
-            }*/
             //Изменяем данные о держателе книги и сотруднеке, выдавшем ее
             var temp = DB.Books.GetAll().ToArray();
             DB.Books.Modify(temp[selectedindex], new Book()
@@ -138,7 +130,7 @@ namespace AppJudgmentDay
             });
             DB.Books.SaveAll();
             //Делаем запись в журнал выдачи
-            string lineWrite = $"({workerObrez}) выдал ({holderObrez}) книгу ({choosebookstr})";
+            string lineWrite = $"({workerObrez}) выдал ({holderObrez}) книгу ({bookdata[0]}{bookdata[1]}{bookdata[2]}{bookdata[3]}{bookdata[5]})";
             using (StreamWriter cw = new StreamWriter("JurnalIssue.txt", true))
             {
                 cw.WriteLine(lineWrite);
