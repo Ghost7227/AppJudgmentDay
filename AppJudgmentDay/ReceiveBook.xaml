@@ -33,7 +33,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button Content="Сдать" Click="Button_Click" IsEnabled="False"/>
+            <Button Content="Сдать" Click="Button_Click" IsEnabled="False" Name="rec"/>
             </StackPanel>
     </Grid>
 </Window>

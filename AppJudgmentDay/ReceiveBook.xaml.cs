@@ -51,11 +51,7 @@ namespace AppJudgmentDay
                 MessageBox.Show("Что-то пошло не так");
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
         public int selectedindex;
         private void worker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -66,7 +62,7 @@ namespace AppJudgmentDay
                 //ChooseBooks.Items.Add(selectedItem);
                 //chooseBook.Add(selectedItem);
                 worker.IsEnabled = false;
-                MessageBox.Show(selectedItem);
+                //MessageBox.Show(selectedItem);
                 booksList.IsEnabled = true;
                 Searchbooks();
             }
@@ -83,11 +79,11 @@ namespace AppJudgmentDay
         }
         //Поиск книг, в записях о держателе которых содержится полученный читатель
         List<int> indexs = new List<int>();
+        public string readerObrez;
         private void Searchbooks()
         {
             string[] readerArr = reader1.Split(',');
-            string readerObrez = $"{readerArr[0]}{readerArr[1]}";
-            MessageBox.Show(readerObrez);
+            readerObrez = $"{readerArr[0]}{readerArr[1]}";
             try
             {
                 //MessageBox.Show(reader1);
@@ -133,10 +129,99 @@ namespace AppJudgmentDay
                 MessageBox.Show("Ошибка чтения или вывода книг");
             }
         }
+        List<string> chooseBook = new List<string>();
         private void booksListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (booksList.SelectedItem != null)
+            {
+                string selectedItem = booksList.SelectedItem.ToString();//Получаем элемент списка в виде строки
+                selectedindex = booksList.SelectedIndex;//Получаем индекс выбранного элемента
+                ChooseBooks.Items.Add(selectedItem);//Добавляем выбранный элемент в список выбранных в окне
+                chooseBook.Add(selectedItem);//Добавляем выбранный элемент в список выбранных програмно, здесь
+                booksList.IsEnabled = false;//Делаем первый список недоступным
+                rec.IsEnabled = true;
+                booksList.IsEnabled = false ;
+            }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            /*try
+            {
+                string[] lines = File.ReadAllLines(BookPath);
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    lines[i].Replace(readerObrez, string.Empty);
+                }
+                File.WriteAllLines(BookPath, lines);
+                MessageBox.Show("Книга возвращена");
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось вернуть книгу");
+            }*/
+            /*try
+            {
+                // Читаем все строки файла
+                string[] lines = File.ReadAllLines(BookPath);
+                foreach (int lineindex in indexs)
+                {
+                    //int lineIndex = indexs[0];
+                    // Проверяем, существует ли указанная строка
+                    if (lineIndex >= 0 && lineIndex < lines.Length)
+                    {
+                        string rederFormatReplace = $"{readerObrez};";
+                        // Удаляем слово из указанной строки
+                        lines[lineIndex] = lines[lineIndex].Replace(readerObrez, string.Empty);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Строка с индексом {lineIndex} не существует.");
+                        return;
+                    }
+
+                    // Записываем обновлённые строки обратно в файл
+                    File.WriteAllLines(BookPath, lines);
+
+                    MessageBox.Show("Слово успешно удалено!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при обработке файла: {ex.Message}");
+            }*/
+            try
+            {
+                // Читаем все строки файла
+                string[] lines = File.ReadAllLines(BookPath);
+
+                // Пройдемся по каждому индексу в списке
+                foreach (int lineIndex in indexs)
+                {
+                    // Проверяем, существует ли указанная строка
+                    if (lineIndex >= 0 && lineIndex < lines.Length)
+                    {
+                        string rederFormatReplace = $"{readerObrez};";
+                        // Удаляем слово из указанной строки
+                        lines[lineIndex] = lines[lineIndex].Replace(rederFormatReplace, string.Empty);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Строка с индексом {lineIndex} не существует.", "Ошибка");
+                        return;
+                    }
+                }
+
+                // Записываем обновлённые строки обратно в файл
+                File.WriteAllLines(BookPath, lines);
+
+                MessageBox.Show("Слово успешно удалено из указанных строк!", "Успех");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при обработке файла: {ex.Message}", "Ошибка");
+            }
+        }
     }
 }
