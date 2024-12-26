@@ -77,10 +77,6 @@ namespace AppJudgmentDay
             deleteBook.ShowDialog();
         }
 
-        private void Button_Click_7(object sender, RoutedEventArgs e)
-        {
-
-        }
         //работники
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
@@ -104,12 +100,6 @@ namespace AppJudgmentDay
         {
             ModifityWorker modifityWorker = new ModifityWorker();
             modifityWorker.Show();
-        }
-
-        private void Button_Click_12(object sender, RoutedEventArgs e)
-        {
-            IssueBook issueBook = new IssueBook();
-            issueBook.ShowDialog();
         }
     }
 }

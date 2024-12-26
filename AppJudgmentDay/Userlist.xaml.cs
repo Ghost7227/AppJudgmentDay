@@ -26,7 +26,7 @@ namespace AppJudgmentDay
             InitializeComponent();
             LoadUserList();
         }
-        
+        public string choose;
         private void LoadUserList()
         {
             string filePath = "DataBaseUsers.txt";
@@ -59,10 +59,31 @@ namespace AppJudgmentDay
                     writer.Write(selectedItem);
                     writer.Close();
                 }
-                IssueBook issueBook = new IssueBook();
-                issueBook.ShowDialog();
-                
+                if (choose == "Выдать")
+                {
+                    SewWorkers workers = new SewWorkers();
+                    this.Close();
+                    workers.ShowDialog();
+                }
+                if (choose == "Сдать")
+                {
+                    ReceiveBook receiveBook = new ReceiveBook();
+                    this.Close();
+                    receiveBook.ShowDialog();
+                }
             }
+        }
+        //Выдать
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            choose = "Выдать";
+            UserListBox.IsEnabled = true;
+        }
+        //Сдать
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            choose = "Сдать";
+            UserListBox.IsEnabled = true;
         }
     }
 }

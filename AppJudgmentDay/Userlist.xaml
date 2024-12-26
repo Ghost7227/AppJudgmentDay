@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="Просмотр пользователей" Height="450" Width="800">
     <Grid>
-        <ListBox Name="UserListBox" SelectionChanged="SelectionChanged"/>
+        <StackPanel>
+            <TextBlock Text="Что вы хотите сделать?"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Выдать книгу" Click="Button_Click"/>
+                <Button Content="Сдать книгу" Click="Button_Click_1"/>
+            </StackPanel>
+            <ListBox Name="UserListBox" SelectionChanged="SelectionChanged" IsEnabled="False"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="SewWorkers" Height="450" Width="800">
     <Grid>
-        <ListBox Name="workersListBox"/>
+        <ListBox Name="workersListBox" SelectionChanged="workersListBox_SelectionChanged"/>
     </Grid>
 </Window>

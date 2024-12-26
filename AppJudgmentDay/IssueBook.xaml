@@ -8,11 +8,14 @@
         Title="IssueBook" Height="450" Width="800">
     <Grid>
         <StackPanel>
-        <TextBlock Text="Читатель:"/>
+            <TextBlock Text="Сотрудник:"/>
+            <TextBlock Name="worker"/>
+            <TextBlock Text="Читатель:"/>
             <TextBlock Name="reader"/>
             <ListBox Name="booksListBox" SelectionChanged="booksListBox_SelectionChanged"/>
             <TextBlock Text="Выбранные книги"/>
             <ListBox Name="ChooseBooks"/>
+            <Button Content="Выдать" Click="Button_Click" IsEnabled="False" Name="iss"/>
         </StackPanel>
     </Grid>
 </Window>

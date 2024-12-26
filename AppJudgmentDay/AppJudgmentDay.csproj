@@ -86,6 +86,9 @@
     <Compile Include="ModifityWorker.xaml.cs">
       <DependentUpon>ModifityWorker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReceiveBook.xaml.cs">
+      <DependentUpon>ReceiveBook.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SewBooks.xaml.cs">
       <DependentUpon>SewBooks.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ModifityWorker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReceiveBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

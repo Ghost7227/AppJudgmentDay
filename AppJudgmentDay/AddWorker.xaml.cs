@@ -45,7 +45,7 @@ namespace AppJudgmentDay
         private string email;
         private int lineCount;
         private string lineCountStr;
-        private int id;
+        //private int id;
         #endregion
         #region
         //проверка корректности ввода

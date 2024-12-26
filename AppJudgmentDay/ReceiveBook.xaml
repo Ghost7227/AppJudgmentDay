@@ -1,0 +1,27 @@
+﻿<Window x:Class="AppJudgmentDay.ReceiveBook"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppJudgmentDay"
+        mc:Ignorable="d"
+        Title="ReceiveBook" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Читатель:"/>
+            <TextBlock Name="reader"/>
+            <ListView Name="worker" IsEnabled="True" SelectionChanged="worker_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Выберите сотрудника:" DisplayMemberBinding="{Binding}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+                <TextBlock Text="Книги читателя"/>
+            <ListBox Name="booksListBox" SelectionChanged="booksListBox_SelectionChanged" IsEnabled="False"/>
+            <TextBlock Text="Выбранные книги"/>
+            <ListBox Name="ChooseBooks"/>
+            <Button Content="Сдать" Click="Button_Click"/>
+            </StackPanel>
+    </Grid>
+</Window>
